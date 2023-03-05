@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon/flower.svg">
+</head>
+<body>
+    <section id="sidebar">
+        <h1>My Blog</h1>
+        <p>Welcome to My Blog where you can add, edit, and delete posts.</p>
+        <button id="add-btn">Create new post</button>
+    </section>
+    
+    <ul id="bloglist"></ul>
+
+    <dialog id="dialog" class="popup">
+        <form id="form">
+            <label for="title">Title:</label><br>
+            <input type="text" id="titleInput" name="title" required>
+            <br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="dateInput" name="date" required>
+            <br>
+            <label for="summary">Summary:</label><br>
+            <textarea id="summaryInput" name="summary" rows="4" cols="20"></textarea>
+            <br>
+            <button type="button" id="cancel">Cancel</button>
+            <button type="submit">Save</button>
+        </form>
+    </dialog>
+
+    <dialog id="delete-dialog" class="popup">
+        <form id="delete-form">
+            <p>Delete post?</p>
+            <button type="button" id="cancel-delete">Cancel</button>
+            <button type="submit">Delete</button>
+        </form>
+    </dialog>
+
+    <script type="module" src="blog.js"></script>
+</body>
+</html>
