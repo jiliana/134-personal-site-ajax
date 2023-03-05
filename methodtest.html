@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Method Test</title>
+</head>
+<body>
+    <form action="https://httpbin.org/" method="post">
+        <label for="id">ID:</label><br>
+        <input type="number" name="id" id="id">
+        <br>
+        <label for="article_name">Article Name:</label><br>
+        <input type="text" name="article_name" id="article_name">
+        <br>
+        <label for="article_body">Article Body:</label><br>
+        <textarea name="article_body" id="article_body" cols="30" rows="5"></textarea>
+        <br>
+        <p id="date"></p>
+
+        <button type="submit" name="action" id="postBtn">POST</button>
+        <button type="submit" name="action" id="getBtn">GET</button>
+        <button type="submit" name="action" id="putBtn">PUT</button>
+        <button type="submit" name="action" id="deleteBtn">DELETE</button>
+    </form>
+
+    <output id="response"></output>
+
+    <script>
+        function updateDate() {
+            const d = new Date();
+            const date = document.getElementById("date");
+            date.innerHTML = d;
+        }
+        setInterval(updateDate, 1000);
+    </script>
+</body>
+</html>
