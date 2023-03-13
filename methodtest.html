@@ -30,7 +30,11 @@
       <button type="submit" name="action" id="deleteBtn">DELETE</button>
     </form>
 
-    <output id="response"></output>
+    
+      <output id="response">
+        <pre id="response"></pre>
+      </output>
+    
 
     <script>
       function updateDate() {
@@ -59,11 +63,12 @@
             var response = JSON.parse(xhr.responseText);
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = strResponse;
+            output.innerHTML = `<pre> ${strResponse} </pre>`;
             
           }
         }
         xhr.send(new FormData(form));
+        form.reset();
       });
 
       postBtn.addEventListener("click", function (e) {
@@ -78,11 +83,12 @@
             var response = JSON.parse(xhr.responseText);
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = strResponse;
+            output.innerHTML = `<pre> ${strResponse} </pre>`;
             
           }
         }
         xhr.send(new FormData(form));
+        form.reset();
       });
 
       putBtn.addEventListener("click", function (e) {
@@ -97,11 +103,12 @@
             var response = JSON.parse(xhr.responseText);
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = strResponse;
+            output.innerHTML = `<pre> ${strResponse} </pre>`;
             
           }
         }
         xhr.send(new FormData(form));
+        form.reset();
       });
 
       deleteBtn.addEventListener("click", function (e) {
@@ -116,7 +123,7 @@
             var response = JSON.parse(xhr.responseText);
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = strResponse;
+            output.innerHTML = `<pre> ${strResponse} </pre>`;
             
           }
           else {
@@ -124,6 +131,7 @@
           }
         }
         xhr.send(new FormData(form));
+        form.reset();
       });
     </script>
   </body>
