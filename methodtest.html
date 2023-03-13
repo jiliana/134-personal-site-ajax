@@ -104,20 +104,27 @@
         xhr.send(new FormData(form));
       });
 
-      // deleteBtn.addEventListener("click", function (e) {
-      //   e.preventDefault();
-      //   var xhr = new XMLHttpRequest();
-      //   xhr.open("DELETE", form.action);
-      //   xhr.setRequestHeader(
-      //     "Content-Type",
-      //     "application/x-www-form-urlencoded"
-      //   );
-      //   xhr.onload = function () {
-      //     var response = JSON.parse(xhr.responseText);
-      //     output.textContent = JSON.stringify(response, null, 2);
-      //   };
-      //   xhr.send(new FormData(form));
-      // });
+      deleteBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const xhr = new XMLHttpRequest();
+        xhr.open("DELETE", 'https://httpbin.org/delete', true);
+
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = () => { // Call a function when the state changes.
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            var strResponse = (JSON.stringify(response, null, 2));
+            strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
+            output.innerHTML = strResponse;
+            
+          }
+          else {
+            console.log("Error");
+          }
+        }
+        xhr.send(new FormData(form));
+      });
     </script>
   </body>
 </html>
