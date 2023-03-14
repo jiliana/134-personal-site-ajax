@@ -1,6 +1,4 @@
-https://sensational-paletas-d35b97.netlify.app/
+[https://sensational-platypus-3980ce.netlify.app/](https://sensational-platypus-3980ce.netlify.app/)
 
-* [Simple Dialogs](https://sensational-paletas-d35b97.netlify.app/nativedialogs.html)
-* [Custom Dialog](https://sensational-paletas-d35b97.netlify.app/customdialog.html)
-* [Simple CRUD](https://sensational-paletas-d35b97.netlify.app/crud.html)
-* [Styled CRUD](https://sensational-paletas-d35b97.netlify.app/styledcrud.html)
+* [Part 1: Method Test](https://sensational-platypus-3980ce.netlify.app/methodtest.html)
+* [Part 2: Web Component](https://sensational-platypus-3980ce.netlify.app/webcomponent.html)
