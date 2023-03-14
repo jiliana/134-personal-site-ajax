@@ -1,138 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Method Test</title>
-  </head>
-  <body>
-    <form id="form" action="https://httpbin.org/" method="post">
-      <label for="id">ID:</label><br />
-      <input type="number" name="id" id="id" />
-      <br />
-      <label for="article_name">Article Name:</label><br />
-      <input type="text" name="article_name" id="article_name" />
-      <br />
-      <label for="article_body">Article Body:</label><br />
-      <textarea
-        name="article_body"
-        id="article_body"
-        cols="30"
-        rows="5"
-      ></textarea>
-      <br />
-      <p id="date"></p>
 
-      <button type="submit" name="action" id="postBtn">POST</button>
-      <button type="submit" name="action" id="getBtn">GET</button>
-      <button type="submit" name="action" id="putBtn">PUT</button>
-      <button type="submit" name="action" id="deleteBtn">DELETE</button>
-    </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Method Test</title>
+  <style>
+    body {
+      text-align: left;
+      margin-left: 20px;
+      margin-top: 20px;
+    }
 
-    
-      <output id="response">
-        <pre id="response"></pre>
-      </output>
-    
+    button {
+      background-color: black;
+      color: white;
+      padding: 5px 30px;
+      border: 0px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
 
-    <script>
-      function updateDate() {
-        const d = new Date();
-        const date = document.getElementById("date");
-        date.innerHTML = d;
-      }
-      setInterval(updateDate, 1000);
+    #date {
+      color: gray;
+    }
 
-      const form = document.querySelector("form");
-      const postBtn = document.getElementById("postBtn");
-      const getBtn = document.getElementById("getBtn");
-      const putBtn = document.getElementById("putBtn");
-      const deleteBtn = document.getElementById("deleteBtn");
-      var output = document.getElementById("response");
+    input, textarea {
+      border-radius: 10px;
+      border: 1px black solid;
+      padding: 5px;
+    }
+  </style>
 
-      getBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", 'https://httpbin.org/get', true);
+</head>
 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+<body>
+  <form id="form" action="https://httpbin.org/" method="post">
+    <label for="id">ID:</label><br />
+    <input type="number" name="id" id="id" />
+    <br />
+    <label for="article_name">Article Name:</label><br />
+    <input type="text" name="article_name" id="article_name" />
+    <br />
+    <label for="article_body">Article Body:</label><br />
+    <textarea name="article_body" id="article_body" cols="30" rows="5"></textarea>
+    <br />
+    <p id="date"></p>
 
-        xhr.onreadystatechange = () => { // Call a function when the state changes.
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            var strResponse = (JSON.stringify(response, null, 2));
-            strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = `<pre> ${strResponse} </pre>`;
-            
-          }
-        }
-        xhr.send(new FormData(form));
-        form.reset();
-      });
+    <button type="submit" name="action" id="postBtn">POST</button>
+    <button type="submit" name="action" id="getBtn">GET</button>
+    <button type="submit" name="action" id="putBtn">PUT</button>
+    <button type="submit" name="action" id="deleteBtn">DELETE</button>
+  </form>
 
-      postBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", 'https://httpbin.org/post', true);
 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  <output id="response">
+    <pre id="response"></pre>
+  </output>
 
-        xhr.onreadystatechange = () => { // Call a function when the state changes.
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            var strResponse = (JSON.stringify(response, null, 2));
-            strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = `<pre> ${strResponse} </pre>`;
-            
-          }
-        }
-        xhr.send(new FormData(form));
-        form.reset();
-      });
+  <script type="module" src="date.js"></script>
+  <script type="module" src="methodtest.js"></script>
+</body>
 
-      putBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const xhr = new XMLHttpRequest();
-        xhr.open("PUT", 'https://httpbin.org/put', true);
-
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = () => { // Call a function when the state changes.
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            var strResponse = (JSON.stringify(response, null, 2));
-            strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = `<pre> ${strResponse} </pre>`;
-            
-          }
-        }
-        xhr.send(new FormData(form));
-        form.reset();
-      });
-
-      deleteBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        const xhr = new XMLHttpRequest();
-        xhr.open("DELETE", 'https://httpbin.org/delete', true);
-
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = () => { // Call a function when the state changes.
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
-            var strResponse = (JSON.stringify(response, null, 2));
-            strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = `<pre> ${strResponse} </pre>`;
-            
-          }
-          else {
-            console.log("Error");
-          }
-        }
-        xhr.send(new FormData(form));
-        form.reset();
-      });
-    </script>
-  </body>
 </html>
