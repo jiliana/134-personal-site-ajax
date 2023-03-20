@@ -8,9 +8,9 @@ var output = document.getElementById("response");
 getBtn.addEventListener("click", function (e) {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", 'https://httpbin.org/get', true);
-
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    const formData = new FormData(form);
+    const queryString = new URLSearchParams(formData).toString();
+    xhr.open("GET", 'https://httpbin.org/get?' + queryString, true);
 
     xhr.onreadystatechange = () => { // Call a function when the state changes.
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -18,16 +18,18 @@ getBtn.addEventListener("click", function (e) {
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
             output.innerHTML = `<pre> ${strResponse} </pre>`;
-
         }
     }
-    xhr.send(new FormData(form));
+    xhr.send();
     form.reset();
 });
 
 postBtn.addEventListener("click", function (e) {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
+
+    const formData = new FormData(form);
+
     xhr.open("POST", 'https://httpbin.org/post', true);
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -37,11 +39,11 @@ postBtn.addEventListener("click", function (e) {
             var response = JSON.parse(xhr.responseText);
             var strResponse = (JSON.stringify(response, null, 2));
             strResponse = strResponse.replace(/(?:\\[rn]|[\r\n]+)+/g, '</br>');
-            output.innerHTML = `<pre> ${strResponse} </pre>`;
+            output.innerHTML = `${strResponse}`;
 
         }
     }
-    xhr.send(new FormData(form));
+    xhr.send(new URLSearchParams(formData));
     form.reset();
 });
 
